@@ -1,5 +1,7 @@
 package jpabook.jpashop;
 
+import jpabook.jpashop.domain.Book;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -13,11 +15,17 @@ public class JpaMain {
         tx.begin();
 
         try {
+            Book book = new Book();
+            book.setAuthor("mao");
+            book.setName("chan");
+
+            em.persist(book);
 
 
 
             tx.commit();
         }catch (Exception e){
+            e.printStackTrace();
             tx.rollback();
         }finally {
             em.close();
